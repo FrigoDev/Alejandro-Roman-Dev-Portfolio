@@ -13,7 +13,8 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build-css": "postcss src/styles/global.css -o src/styles/global.css"
   },
   "dependencies": {
     "gatsby": "^5.8.1",
@@ -31,6 +32,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-webpack-plugin": "^4.0.1",
     "gatsby-plugin-eslint": "^4.0.4",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
     "typescript": "^5.0.4"
   }
 }
