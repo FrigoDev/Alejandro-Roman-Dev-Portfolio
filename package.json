@@ -13,11 +13,15 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit",
-    "build-css": "postcss src/styles/global.css -o src/styles/global.css"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "gatsby": "^5.8.1",
+    "gatsby-plugin-image": "^3.8.0",
+    "gatsby-plugin-postcss": "^6.8.0",
+    "gatsby-plugin-react-helmet": "^6.8.0",
+    "gatsby-plugin-sharp": "^5.8.1",
+    "gatsby-transformer-sharp": "^5.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
