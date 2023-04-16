@@ -13,7 +13,23 @@ const config: GatsbyConfig = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-react-helmet",
+    "gatsby-transformer-json",
     "gatsby-plugin-postcss",
+    "gatsby-plugin-typescript",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        "name": "images",
+        "path": "./src/images"
+      },
+    },
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        "spaceId": "vm0g6j1fpd9z",
+        "accessToken": "yrXWdk4DxtB1gKGVEPDrdvUdYBNSOU3slcAcA0hpBQk"
+      }
+    },
   ],
 };
 
