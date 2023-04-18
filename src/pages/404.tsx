@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Link, HeadFC, PageProps } from "gatsby";
 import * as React from "react";
 
