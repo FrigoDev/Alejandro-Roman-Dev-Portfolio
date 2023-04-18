@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 :root {
-    --color-white: #fff;
-    --color-white-dark: #f5f5f5;
-    --color-blue: #1e90ff;
-    --color-blue-dark: #1c7ed6;
+  --color-white: #fff;
+  --color-white-dark: #f5f5f5;
+  --color-blue: #1e90ff;
+  --color-black-alt: #080808;
+  --bg-mini-cards: #34455d;
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
