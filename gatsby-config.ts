@@ -1,4 +1,9 @@
+import * as dotenv from "dotenv";
 import type { GatsbyConfig } from "gatsby";
+
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -19,16 +24,16 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        "name": "images",
-        "path": "./src/images"
+        name: "images",
+        path: "./src/images",
       },
     },
     {
       resolve: "gatsby-source-contentful",
       options: {
-        "spaceId": "vm0g6j1fpd9z",
-        "accessToken": "yrXWdk4DxtB1gKGVEPDrdvUdYBNSOU3slcAcA0hpBQk"
-      }
+        spaceId: process.env.SPACEID,
+        accessToken: process.env.ACCESSTOKEN,
+      },
     },
   ],
 };
