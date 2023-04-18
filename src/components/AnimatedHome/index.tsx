@@ -3,8 +3,6 @@ import React from "react";
 
 import homegif from "../../images/HomePresentation.webp";
 
-import "./AnimatedHome.css";
-
 const AnimatedHome = () => {
   const animatedText = {
     hidden: {
