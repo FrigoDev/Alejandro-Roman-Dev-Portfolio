@@ -1,49 +1,27 @@
-import * as React from "react"
-import { Link, HeadFC, PageProps } from "gatsby"
+import { motion } from "framer-motion";
+import { Link, HeadFC, PageProps } from "gatsby";
+import * as React from "react";
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
+import "../components/ProjectsDetails/ProjectsDetails.css";
 
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
+    <main className="h-screen bg-main-color flex flex-col justify-center ">
+      <h1 className="text-white text-center uppercase font-bold text-4xl tracking-wide mb-6">
+        Page not found
+      </h1>
+      <p className="text-white text-center mb-5 font-medium text-xl">
+        Sorry 😭😭😭😭, we couldn’t find what you were looking for.
         <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
+        <Link className="mt-4" to="/">
+          {<br />}Go home
+        </Link>
+        .
       </p>
     </main>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
 
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head: HeadFC = () => <title>Page Not found</title>;
