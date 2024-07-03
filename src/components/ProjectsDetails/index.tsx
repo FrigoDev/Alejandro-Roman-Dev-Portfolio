@@ -31,7 +31,7 @@ const ProjectDetails = ({ data }: DetailedProjectsProps) => {
   const project = data.allContentfulProjects.edges[0].node;
   return (
     <>
-      <main className="h-screen p-8 bg-main-color">
+      <main className="min-h-screen p-8 bg-main-color">
         <div className="container mx-auto">
           <div className="py-14">
             <h1 className="text-white text-center uppercase font-bold text-4xl tracking-wide">
