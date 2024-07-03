@@ -43,7 +43,7 @@ const Skills = ({ data }: { data: AllContentfulTechnologiesEdge[] }) => {
         >
           MY DEVELOPMENT STACK
         </motion.h3>
-        <div className="flex flex-row flex-wrap justify-center gap-3">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-3 justify-center mx-4">
           {data.map((edge) => {
             const { node } = edge;
             return (
