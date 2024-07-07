@@ -17,6 +17,7 @@ export interface Edge {
 }
 
 export interface Node {
+  link: string | undefined;
   name: string;
   image: Image;
   tags: string[];

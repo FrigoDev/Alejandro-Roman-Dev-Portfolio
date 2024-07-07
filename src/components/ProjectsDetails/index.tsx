@@ -7,12 +7,14 @@ import { BiArrowBack } from "react-icons/bi";
 import "./ProjectsDetails.css";
 import { DetailedProjectsProps } from "../../types/detailedProjects";
 import Footer from "../Footer";
+import SEO from "../SEO";
 
 export const query = graphql`
   query MyQuery($id: String!) {
     allContentfulProjects(filter: { id: { eq: $id } }) {
       edges {
         node {
+          link
           name
           image {
             gatsbyImageData(placeholder: BLURRED)
@@ -32,6 +34,7 @@ const ProjectDetails = ({ data }: DetailedProjectsProps) => {
   return (
     <>
       <main className="min-h-screen p-8 bg-main-color">
+        <SEO title="Alejandro Román - Frontend Developer" description="I am a dedicated frontend developer and systems engineering student at Universidad De Cartagena. Explore my portfolio to see my work!" />
         <div className="container mx-auto">
           <div className="py-14">
             <h1 className="text-white text-center uppercase font-bold text-4xl tracking-wide">
@@ -77,6 +80,16 @@ const ProjectDetails = ({ data }: DetailedProjectsProps) => {
             <p className="font-bold text-lg text-white">
               {"Technologies: " + project.tags.join(", ")}
             </p>
+          </div>
+          <div className="flex justify-center">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-white text-black hover:text-white hover:bg-black hover:drop-shadow-xl shadow-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+            >
+              View Project
+            </a>
           </div>
         </div>
       </main>
