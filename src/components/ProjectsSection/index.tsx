@@ -41,7 +41,7 @@ const ProjectsSection = ({
         <div className="relative rounded shadow-sm">
           <input
             value={filterText}
-            placeholder="Example: React, Gatsby, CSS, etc..."
+            placeholder="Example: React, JavaScript, CSS, etc..."
             onChange={(e) => handleFilter(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"

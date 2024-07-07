@@ -9,19 +9,17 @@ import MiniCards from "../MiniCards";
 const Skills = ({ data }: { data: AllContentfulTechnologiesEdge[] }) => {
   return (
     <div className="flex flex-col">
-      <motion.div className="mx-auto">
+      <motion.div className="flex justify-between md:flex-row flex-col mx-auto px-4">
         <motion.p
           viewport={{ once: true, amount: 0.8 }}
           initial="offscreen"
           whileInView="onscreen"
           variants={showAnimation}
-          className="font-semibold text-center"
+          className="font-semibold text-center md:w-1/2 m-auto px-10"
         >
-          I’m a frontend developer that loves build beautiful and functional
-          websites and web apps using javascript technologies like React,
-          NextJS, Gatsby, etc.
+          I am a dedicated frontend developer and systems engineering student at the Universidad De Cartagena, passionate about creating stunning and highly functional websites and web applications. Utilizing advanced JavaScript technologies such as React, Next.js, and AstroJS, I aim to deliver seamless and visually stunning user experiences that prioritize performance and usability.
         </motion.p>
-        <div className="mt-5">
+        <div className="mt-5 md:w-1/2">
           <motion.img
             viewport={{ once: true, amount: 0.8 }}
             initial="offscreen"
@@ -30,6 +28,8 @@ const Skills = ({ data }: { data: AllContentfulTechnologiesEdge[] }) => {
             src={SoftwareGif}
             alt="Software developer gif"
             className="rounded-full mx-auto"
+            width={360}
+            height={270}
           />
         </div>
       </motion.div>
