@@ -13,7 +13,7 @@ const Footer = () => {
           <FaLinkedin className="ml-2 text-2xl" />
         </div>
       </a>
-      <div>© 2023 - Alejandro Román Misas</div>
+      <div>© 2024 - Alejandro Román Misas</div>
       <a href="mailto:alejo012903@gmail.com">
         <div className="flex duration-150 hover:text-blue-500 cursor-pointer">
           Send me an Email <MdEmail className="ml-2 text-2xl" />
