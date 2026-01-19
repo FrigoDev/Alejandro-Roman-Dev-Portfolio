@@ -6,6 +6,7 @@ export interface HomeProps {
 export interface HomeData {
   allContentfulProjects: AllContentfulProjects;
   allContentfulTechnologies: AllContentfulTechnologies;
+  allContentfulExperience?: AllContentfulExperience;
 }
 
 export interface AllContentfulProjects {
@@ -57,4 +58,24 @@ export interface Source {
   srcSet: string;
   sizes: string;
   type: string;
+}
+
+export interface AllContentfulExperience {
+  edges: AllContentfulExperienceEdge[];
+}
+
+export interface AllContentfulExperienceEdge {
+  node: ExperienceNode;
+}
+
+export interface ExperienceNode {
+  id: string;
+  companyName: string;
+  position: string;
+  startDate: string;
+  endDate: string | null;
+  description: Description;
+  companyLogo: Image | null;
+  technologies: string[];
+  location: string;
 }
