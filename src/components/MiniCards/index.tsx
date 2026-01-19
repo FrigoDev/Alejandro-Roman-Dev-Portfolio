@@ -8,9 +8,11 @@ import "./MiniCards.css";
 const MiniCards = ({
   image,
   name,
+  className = "",
 }: {
   image: IGatsbyImageData;
   name: string;
+  className?: string;
 }) => {
   return (
     <motion.div
@@ -19,7 +21,7 @@ const MiniCards = ({
       whileHover={hoverEffect}
       variants={showAnimation}
       viewport={{ once: true, amount: 0.8 }}
-      className="relative flex justify-center items-center m-2 rounded-2xl aspect-square card-bg cursor-pointer group"
+      className={`relative flex justify-center items-center m-2 rounded-2xl aspect-square card-bg cursor-pointer group ${className}`}
     >
       <GatsbyImage image={image} alt={name} className="w-1/2" />
       <div className="absolute bottom-0 flex-col items-center hidden sm:group-hover:flex">

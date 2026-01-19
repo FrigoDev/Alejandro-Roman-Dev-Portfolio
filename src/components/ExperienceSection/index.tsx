@@ -33,11 +33,11 @@ const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
           >
             {/* Timeline line */}
             {!isLast && (
-              <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-blue-500 opacity-30" />
+              <div className="hidden md:block absolute left-6 top-16 bottom-0 w-0.5 bg-blue-500 opacity-30" />
             )}
 
             {/* Company Logo or Icon */}
-            <div className="flex-shrink-0">
+            <div className="hidden md:block flex-shrink-0">
               {node.companyLogo ? (
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-white border-2 border-blue-500 p-1">
                   <GatsbyImage

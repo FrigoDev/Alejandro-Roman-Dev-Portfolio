@@ -44,13 +44,15 @@ const Skills = ({ data }: { data: AllContentfulTechnologiesEdge[] }) => {
           MY DEVELOPMENT STACK
         </motion.h3>
         <div className="grid grid-cols-3 md:grid-cols-4 gap-3 justify-center mx-4">
-          {data.map((edge) => {
+          {data.map((edge, index) => {
             const { node } = edge;
+            const isLast = index === data.length - 1;
             return (
               <MiniCards
                 key={node.name}
                 name={node.name}
                 image={node.image.gatsbyImageData}
+                className={isLast ? "hidden md:flex" : ""}
               />
             );
           })}
