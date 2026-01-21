@@ -34,7 +34,7 @@ const ProjectDetails = ({ data }: DetailedProjectsProps) => {
   return (
     <>
       <main className="min-h-screen p-8 bg-main-color">
-        <SEO title="Alejandro Román - Frontend Developer" description="I am a dedicated frontend developer and systems engineering student at Universidad De Cartagena. Explore my portfolio to see my work!" />
+        <SEO title="Alejandro Román - Frontend Developer" description="I am a dedicated frontend developer and Systems Engineer from Universidad De Cartagena. Explore my portfolio to see my work!" />
         <div className="container mx-auto">
           <div className="py-14">
             <h1 className="text-white text-center uppercase font-bold text-4xl tracking-wide">

@@ -14,9 +14,9 @@ const SEO: React.FC<SEOProps> = ({ title, description }) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="Portfolio, FrigoDev, Alejandro Roman, Frontend Developer, frontend developer, systems engineering student, Universidad De Cartagena, React, Next.js, AstroJS, web development, web applications" />
+    <meta name="keywords" content="Portfolio, FrigoDev, Alejandro Roman, Frontend Developer, frontend developer, Systems Engineer, Universidad De Cartagena, React, Next.js, AstroJS, web development, web applications" />
     <meta name="author" content="FrigoDev" />
-    <link rel="icon" 
+    <link rel="icon"
       type="image/png"
       href={favicon}>
     </link>

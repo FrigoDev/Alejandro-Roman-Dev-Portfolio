@@ -17,7 +17,7 @@ const Skills = ({ data }: { data: AllContentfulTechnologiesEdge[] }) => {
           variants={showAnimation}
           className="font-semibold text-center md:w-1/2 m-auto px-10"
         >
-          I am a dedicated frontend developer and systems engineering student at the Universidad De Cartagena, passionate about creating stunning and highly functional websites and web applications. Utilizing advanced JavaScript technologies such as React, Next.js, and AstroJS, I aim to deliver seamless and visually stunning user experiences that prioritize performance and usability.
+          I am a dedicated frontend developer and Systems Engineer from the Universidad De Cartagena, passionate about creating stunning and highly functional websites and web applications. Utilizing advanced JavaScript technologies such as React, Next.js, and AstroJS, I aim to deliver seamless and visually stunning user experiences that prioritize performance and usability.
         </motion.p>
         <div className="mt-5 md:w-1/2">
           <motion.img

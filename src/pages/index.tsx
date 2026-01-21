@@ -14,7 +14,7 @@ import { HomeProps } from "../types/home";
 const Home = ({ data }: HomeProps) => {
   return (
     <main>
-      <SEO title="Alejandro Román - Frontend Developer" description="I am a dedicated frontend developer and systems engineering student at Universidad De Cartagena. Explore my portfolio to see my work!" />
+      <SEO title="Alejandro Román - Frontend Developer" description="I am a dedicated frontend developer and Systems Engineer from Universidad De Cartagena. Explore my portfolio to see my work!" />
       <ProgressBar />
       <AnimatedHome />
       <SectionLayout name="Skills & Technologies" type="">
