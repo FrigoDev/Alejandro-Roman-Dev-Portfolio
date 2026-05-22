@@ -2,6 +2,16 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
 
+module.exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "src"),
+      },
+    },
+  });
+};
+
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const projectTemplate = path.resolve(
