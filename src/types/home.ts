@@ -41,6 +41,7 @@ export interface AllContentfulTechnologiesEdge {
 
 export interface FluffyNode {
   name: string;
+  category?: string;
   image: Image;
 }
 

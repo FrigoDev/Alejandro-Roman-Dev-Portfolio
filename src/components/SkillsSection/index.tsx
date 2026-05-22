@@ -1,63 +1,84 @@
 import { motion } from "framer-motion";
 import * as React from "react";
 
-import SoftwareGif from "../../images/Softwaregif.webp";
 import { AllContentfulTechnologiesEdge } from "../../types/home";
 import { showAnimation } from "../../utils/animations";
 import MiniCards from "../MiniCards";
 
+const CATEGORY_ORDER = [
+  "Technologies",
+  "Frontend",
+  "Backend",
+  "Databases",
+  "Testing",
+  "Tools",
+  "Design",
+  "Other",
+];
+
+const getCategoryRank = (category: string) => {
+  const index = CATEGORY_ORDER.indexOf(category);
+  return index === -1 ? CATEGORY_ORDER.length : index;
+};
+
 const Skills = ({ data }: { data: AllContentfulTechnologiesEdge[] }) => {
+  const grouped = data.reduce<Record<string, AllContentfulTechnologiesEdge[]>>(
+    (acc, edge) => {
+      const category = edge.node.category || "Technologies";
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(edge);
+      return acc;
+    },
+    {}
+  );
+
+  const sortedCategories = Object.entries(grouped).sort(
+    ([categoryA], [categoryB]) => {
+      const rankDifference = getCategoryRank(categoryA) - getCategoryRank(categoryB);
+      if (rankDifference !== 0) return rankDifference;
+
+      return categoryA.localeCompare(categoryB);
+    }
+  );
+
   return (
-    <div className="flex flex-col">
-      <motion.div className="flex justify-between md:flex-row flex-col mx-auto px-4">
-        <motion.p
-          viewport={{ once: true, amount: 0.8 }}
-          initial="offscreen"
-          whileInView="onscreen"
-          variants={showAnimation}
-          className="font-semibold text-center md:w-1/2 m-auto px-10"
-        >
-          I am a dedicated frontend developer and Systems Engineer from the Universidad De Cartagena, passionate about creating stunning and highly functional websites and web applications. Utilizing advanced JavaScript technologies such as React, Next.js, and AstroJS, I aim to deliver seamless and visually stunning user experiences that prioritize performance and usability.
-        </motion.p>
-        <div className="mt-5 md:w-1/2">
-          <motion.img
-            viewport={{ once: true, amount: 0.8 }}
+    <div className="px-4 max-w-4xl mx-auto w-full">
+      {sortedCategories.map(([category, items]) => {
+        const sortedItems = [...items].sort((left, right) => {
+          const leftName = left.node.name.replace(/-Logo$/i, "");
+          const rightName = right.node.name.replace(/-Logo$/i, "");
+
+          return leftName.localeCompare(rightName);
+        });
+
+        return (
+          <motion.div
+            key={category}
+            viewport={{ once: true, amount: 0.2 }}
             initial="offscreen"
             whileInView="onscreen"
             variants={showAnimation}
-            src={SoftwareGif}
-            alt="Software developer gif"
-            className="rounded-full mx-auto"
-            width={360}
-            height={270}
-          />
-        </div>
-      </motion.div>
-      <div className="text-center mx-auto">
-        <motion.h3
-          viewport={{ once: true, amount: 0.8 }}
-          initial="offscreen"
-          whileInView="onscreen"
-          variants={showAnimation}
-          className="text-blue-500 text-2xl font-semibold mt-14 mb-7"
-        >
-          MY DEVELOPMENT STACK
-        </motion.h3>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-3 justify-center mx-4">
-          {data.map((edge, index) => {
-            const { node } = edge;
-            const isLast = index === data.length - 1;
-            return (
-              <MiniCards
-                key={node.name}
-                name={node.name}
-                image={node.image.gatsbyImageData}
-                className={isLast ? "hidden md:flex" : ""}
-              />
-            );
-          })}
-        </div>
-      </div>
+            className="mb-10"
+          >
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-blue-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                {category}
+              </span>
+              <div className="flex-1 h-px bg-blue-500/20" />
+            </div>
+            <div className="flex flex-wrap justify-center md:justify-start gap-3">
+              {sortedItems.map(({ node }, index) => (
+                <MiniCards
+                  key={node.name}
+                  name={node.name}
+                  image={node.image.gatsbyImageData}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+      })}
     </div>
   );
 };
