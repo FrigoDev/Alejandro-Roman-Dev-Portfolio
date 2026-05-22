@@ -24,7 +24,6 @@ const MiniCards = ({
   className?: string;
   index?: number;
 }) => {
-  const displayName = name.slice(0, -5);
 
   return (
     <motion.div
@@ -39,13 +38,13 @@ const MiniCards = ({
       <div className="w-12 h-12 flex items-center justify-center">
         <GatsbyImage
           image={image}
-          alt={displayName}
+          alt={name}
           className="w-full h-full"
           imgClassName="!object-contain"
         />
       </div>
       <span className="text-white/90 text-xs font-semibold text-center leading-tight">
-        {displayName}
+        {name}
       </span>
     </motion.div>
   );
