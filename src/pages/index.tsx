@@ -1,6 +1,7 @@
 import { graphql } from "gatsby";
 import React from "react";
 
+import AboutMe from "../components/AboutMe";
 import AnimatedHome from "../components/AnimatedHome";
 import ExperienceSection from "../components/ExperienceSection";
 import Footer from "../components/Footer";
@@ -17,6 +18,9 @@ const Home = ({ data }: HomeProps) => {
       <SEO title="Alejandro Román - Frontend Developer" description="I am a dedicated frontend developer and Systems Engineer from Universidad De Cartagena. Explore my portfolio to see my work!" />
       <ProgressBar />
       <AnimatedHome />
+      <SectionLayout name="About Me" type="">
+        <AboutMe />
+      </SectionLayout>
       <SectionLayout name="Skills & Technologies" type="">
         <Skills data={data.allContentfulTechnologies.edges} />
       </SectionLayout>
@@ -56,6 +60,7 @@ export const query = graphql`
       edges {
         node {
           name
+          category
           image {
             gatsbyImageData(placeholder: BLURRED)
           }
