@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import React from "react";
-import { AiFillTag } from "react-icons/ai";
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
+
 export default function TagFilter({
   name,
   handleDelete,
@@ -9,13 +10,19 @@ export default function TagFilter({
   handleDelete: () => void;
 }) {
   return (
-    <div
+    <motion.button
+      type="button"
+      layout
+      initial={{ opacity: 0, scale: 0.85 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.85 }}
+      transition={{ duration: 0.2 }}
       onClick={handleDelete}
-      className="px-3 my-1 ml-2 rounded-lg flex items-center justify-center font-semibold bg-blue-500 text-white hover:bg-red-500 hover:pointer-events-auto"
+      className="group inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-blue-500 px-3 py-1.5 text-sm font-medium text-white shadow-md shadow-blue-200 transition-colors hover:border-red-400 hover:bg-red-500 hover:shadow-red-200"
+      aria-label={`Remove filter ${name}`}
     >
-      <AiFillTag />
-      <div className="mx-1 p-1 pointer-events-none">{name + " "}</div>
-      <IoMdCloseCircle />
-    </div>
+      <span>{name}</span>
+      <IoMdClose className="text-base opacity-70 transition-opacity group-hover:opacity-100" />
+    </motion.button>
   );
 }
