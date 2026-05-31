@@ -1,5 +1,5 @@
 import { debounce } from "lodash";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 
 export function useTagFilter<Type extends { node: { tags: string[] } }>(
   items: Type[]
@@ -39,7 +39,7 @@ export function useTagFilter<Type extends { node: { tags: string[] } }>(
   const setTag = useCallback(
     debounce((text: string) => {
       const matchedTag = availableTags.find(
-        (tag) => tag.toLocaleLowerCase().trim() === text.toLocaleLowerCase()
+        (tag) => tag.toLocaleLowerCase().trim() === text.toLocaleLowerCase().trim()
       );
       if (matchedTag) {
         setFilterTags((prev) =>
@@ -50,6 +50,10 @@ export function useTagFilter<Type extends { node: { tags: string[] } }>(
     }, 500),
     [availableTags]
   );
+
+  useEffect(() => {
+    return () => setTag.cancel();
+  }, [setTag]);
 
   const handleFilter = (text: string) => {
     setFilterText(text);
