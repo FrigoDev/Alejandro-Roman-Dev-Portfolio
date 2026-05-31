@@ -10,6 +10,6 @@ const ProgressBar = () => {
     restDelta: 0.001,
   });
 
-  return <motion.main style={{ scaleX }} className="progressBar" />;
+  return <motion.div style={{ scaleX }} className="progressBar" />;
 };
 export default ProgressBar;

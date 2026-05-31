@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import "./SectionLayout.css";
 import { showAnimation } from "../utils/animations";
+
+const toSectionId = (name: string) =>
+  name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 const SectionLayout = ({
   name,
@@ -13,14 +16,10 @@ const SectionLayout = ({
   type: string;
   children: React.ReactNode;
 }) => {
-  const [myClass, setMyClass] = useState("");
-
-  useEffect(() => {
-    type === "dark" ? setMyClass("section-dark") : setMyClass("");
-  });
+  const myClass = type === "dark" ? "section-dark" : "";
 
   return (
-    <section id={name} className={myClass + " pb-14"}>
+    <section id={toSectionId(name)} className={myClass + " pb-14"}>
       <div className="flex flex-col container mx-auto">
         <div className="my-14">
           <motion.h2

@@ -9,7 +9,7 @@ import {
 
 import homegif from "../../images/HomePresentation.webp";
 
-const TYPE_MS = 72;
+const TYPE_MS = 50;
 
 const GREETING = "Hi! I'm ";
 const NAME = "FrigoDev";
@@ -112,7 +112,8 @@ const AnimatedHome = () => {
         <img src={homegif} alt="" className="w-full h-full absolute object-cover" />
       </div>
       <div className="flex flex-col align-center justify-center text-white items-center font-bold z-10 px-4">
-        <div className="text-5xl z-10 w-full max-w-4xl text-center">
+        <h1 className="sr-only">Hi! I'm FrigoDev. Full-Stack Developer.</h1>
+        <div aria-hidden="true" className="text-5xl z-10 w-full max-w-4xl text-center">
           <span className="inline-block min-h-[1.25em]">
             {greetingPlain}
             <span className="text-blue-500">{namePart}</span>
