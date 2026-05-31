@@ -41,11 +41,15 @@ const ProjectCard = ({ project, isExpanded, onToggle }: ProjectCardProps) => {
         aria-controls={`project-details-${project.id}`}
       >
         <div className="relative w-full overflow-hidden">
-          <GatsbyImage
-            image={project.image.gatsbyImageData}
-            alt={project.name}
-            className="h-full w-full transition-transform duration-500 group-hover:scale-105"
-          />
+          {project.image ? (
+            <GatsbyImage
+              image={project.image.gatsbyImageData}
+              alt={project.name}
+              className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="h-48 w-full bg-slate-800" />
+          )}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
           <div className="absolute inset-x-0 bottom-0 p-4">
             <h3 className="text-lg font-bold uppercase tracking-wide text-white drop-shadow-md">

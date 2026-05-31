@@ -30,7 +30,21 @@ export const query = graphql`
 `;
 
 const ProjectDetails = ({ data }: DetailedProjectsProps) => {
-  const project = data.allContentfulProjects.edges[0].node;
+  const edges = data.allContentfulProjects.edges;
+
+  if (!edges.length) {
+    return (
+      <>
+        <main className="min-h-screen p-8 bg-main-color flex items-center justify-center">
+          <SEO title="Alejandro Román - Frontend Developer" description="I am a dedicated frontend developer and Systems Engineer from Universidad De Cartagena. Explore my portfolio to see my work!" />
+          <p className="text-white text-xl">Project not found.</p>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  const project = edges[0].node;
   return (
     <>
       <main className="min-h-screen p-8 bg-main-color">
@@ -81,16 +95,18 @@ const ProjectDetails = ({ data }: DetailedProjectsProps) => {
               {"Technologies: " + project.tags.join(", ")}
             </p>
           </div>
-          <div className="flex justify-center">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-white text-black hover:text-white hover:bg-black hover:drop-shadow-xl shadow-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
-            >
-              View Project
-            </a>
-          </div>
+          {project.link && (
+            <div className="flex justify-center">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white text-black hover:text-white hover:bg-black hover:drop-shadow-xl shadow-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+              >
+                View Project
+              </a>
+            </div>
+          )}
         </div>
       </main>
       <Footer />
