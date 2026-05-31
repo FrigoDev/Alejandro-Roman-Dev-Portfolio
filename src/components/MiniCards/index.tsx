@@ -32,8 +32,8 @@ const MiniCards = ({
       whileInView="onscreen"
       viewport={{ once: true, amount: 0.3 }}
       variants={cardVariants}
-      whileHover={{ scale: 1.1, transition: { duration: 0.15 } }}
-      className={`flex flex-col items-center justify-center gap-2 p-4 rounded-2xl card-bg cursor-pointer border border-transparent hover:border-blue-500/50 hover:shadow-[0_0_16px_rgba(30,144,255,0.15)] transition-all duration-200 w-24 ${className}`}
+      whileHover={{ scale: 1.1, transition: { duration: 0.08 } }}
+      className={`flex flex-col items-center justify-center gap-2 p-4 rounded-2xl card-bg border border-transparent hover:border-blue-500/50 hover:shadow-[0_0_16px_rgba(30,144,255,0.15)] transition-all duration-100 w-24 ${className}`}
     >
       <div className="w-12 h-12 flex items-center justify-center">
         <GatsbyImage
