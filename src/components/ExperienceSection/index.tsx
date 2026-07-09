@@ -12,7 +12,9 @@ interface ExperienceSectionProps {
 
 const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
   const formatDate = (dateString: string) => {
-    const [year, month, day] = dateString.split("-").map(Number);
+    // Keep only the date part: Contentful may return a full ISO datetime
+    // ("2024-10-15T00:00-05:00") whose timezone offset breaks split("-")
+    const [year, month, day] = dateString.slice(0, 10).split("-").map(Number);
     const date = new Date(year, month - 1, day);
     return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
   };
