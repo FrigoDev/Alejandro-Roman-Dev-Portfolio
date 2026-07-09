@@ -3,8 +3,9 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 10px;
+  height: 3px;
   background: var(--color-blue);
   transform-origin: 0%;
-  z-index: 20;
+  /* Above the navbar so the progress line draws over its top edge */
+  z-index: 40;
 }
