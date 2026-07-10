@@ -5,7 +5,7 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 
-const NAV_LINKS = [
+export const NAV_LINKS = [
   { id: "Home", label: "Home" },
   { id: "about-me", label: "About Me" },
   { id: "skills-technologies", label: "Skills" },
