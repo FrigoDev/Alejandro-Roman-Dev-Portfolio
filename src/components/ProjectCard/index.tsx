@@ -55,7 +55,7 @@ const ProjectCard = ({ project, isExpanded, onToggle }: ProjectCardProps) => {
             <h3 className="text-lg font-bold uppercase tracking-wide text-white drop-shadow-md">
               {project.name}
             </h3>
-            <div className="mt-2 flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+            <div className="themed-scrollbar mt-2 flex gap-1.5 overflow-x-auto pb-1">
               {project.tags.map((tag) => (
                 <TagBadge key={tag} tag={tag} />
               ))}
