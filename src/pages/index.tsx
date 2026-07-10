@@ -3,6 +3,7 @@ import React from "react";
 
 import AboutMe from "../components/AboutMe";
 import AnimatedHome from "../components/AnimatedHome";
+import ContactSection from "../components/ContactSection";
 import ExperienceSection from "../components/ExperienceSection";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -34,6 +35,10 @@ const Home = ({ data }: HomeProps) => {
 
         <SectionLayout name="Projects" type="">
           <ProjectsSection projectsData={data.allContentfulProjects} />
+        </SectionLayout>
+
+        <SectionLayout name="Contact" type="">
+          <ContactSection />
         </SectionLayout>
       </main>
       <Footer />
