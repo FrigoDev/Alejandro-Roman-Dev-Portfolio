@@ -71,7 +71,8 @@ export const query = graphql`
           name
           category
           image {
-            gatsbyImageData(placeholder: BLURRED)
+            # PNG fallback: webp-original assets otherwise produce no <img> src
+            gatsbyImageData(placeholder: BLURRED, formats: [PNG, WEBP])
           }
         }
       }
@@ -90,7 +91,7 @@ export const query = graphql`
             description
           }
           companyLogo {
-            gatsbyImageData(placeholder: BLURRED)
+            gatsbyImageData(placeholder: BLURRED, formats: [PNG, WEBP])
           }
         }
       }
