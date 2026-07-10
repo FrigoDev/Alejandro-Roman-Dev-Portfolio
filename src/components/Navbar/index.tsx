@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaFileAlt } from "react-icons/fa";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -11,7 +11,11 @@ const NAV_LINKS = [
   { id: "skills-technologies", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
 ];
+
+const FOCUS_RING =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400";
 
 const NAVBAR_HEIGHT = 96;
 
@@ -32,6 +36,32 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("Home");
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const headerRef = useRef<HTMLElement>(null);
+
+  // While the mobile menu is open: close on Escape or outside click/tap,
+  // and keep the page from scrolling underneath
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    const onPointerDown = (event: MouseEvent | TouchEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
 
   // Read the theme applied before hydration (see gatsby-ssr.js)
   useEffect(() => {
@@ -77,13 +107,9 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, []);
 
-  const linkClass = (id: string) =>
-    `rounded-md px-3 py-2 text-sm font-semibold transition-colors duration-200 ${
-      activeId === id ? "text-blue-400" : "text-white/80 hover:text-white"
-    }`;
-
   return (
     <motion.header
+      ref={headerRef}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.2 }}
@@ -95,26 +121,39 @@ const Navbar = () => {
           phase === "solid" ? "h-16" : "h-20"
         }`}
       >
-        <a href="#Home" className="text-xl font-extrabold text-white">
+        <a href="#Home" className={`text-xl font-extrabold text-white ${FOCUS_RING} rounded-md`}>
           FrigoDev<span className="text-blue-500">.</span>
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              className={linkClass(link.id)}
-              aria-current={activeId === link.id ? "true" : undefined}
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = activeId === link.id;
+            return (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className={`relative rounded-md px-3 py-2 text-sm font-semibold transition-colors duration-200 ${FOCUS_RING} ${
+                  isActive ? "text-blue-400" : "text-white/80 hover:text-white"
+                }`}
+                aria-current={isActive ? "true" : undefined}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-pill"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    className="absolute inset-0 rounded-md bg-white/10"
+                    aria-hidden
+                  />
+                )}
+                <span className="relative">{link.label}</span>
+              </a>
+            );
+          })}
           <a
             href="/CV Alejandro Román v2 Eng Version.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-1.5 text-sm font-semibold text-white transition hover:border-blue-400/80 hover:bg-white/10"
+            className={`ml-3 inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-1.5 text-sm font-semibold text-white transition hover:border-blue-400/80 hover:bg-white/10 ${FOCUS_RING}`}
           >
             <FaFileAlt aria-hidden />
             CV
@@ -125,7 +164,7 @@ const Navbar = () => {
           <button
             type="button"
             onClick={toggleTheme}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white transition hover:border-blue-400/80 hover:bg-white/10"
+            className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white transition hover:border-blue-400/80 hover:bg-white/10 ${FOCUS_RING}`}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? <FiSun aria-hidden /> : <FiMoon aria-hidden />}
@@ -133,7 +172,7 @@ const Navbar = () => {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="text-2xl text-white md:hidden"
+            className={`rounded-md text-2xl text-white md:hidden ${FOCUS_RING}`}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -159,7 +198,7 @@ const Navbar = () => {
                   key={link.id}
                   href={`#${link.id}`}
                   onClick={() => setMenuOpen(false)}
-                  className={`rounded-md px-3 py-3 font-semibold transition-colors ${
+                  className={`rounded-md px-3 py-3 font-semibold transition-colors ${FOCUS_RING} ${
                     activeId === link.id ? "text-blue-400" : "text-white/80 hover:text-white"
                   }`}
                 >
@@ -171,7 +210,7 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 inline-flex items-center gap-2 rounded-md px-3 py-3 font-semibold text-white/80 transition-colors hover:text-white"
+                className={`mt-2 inline-flex items-center gap-2 rounded-md px-3 py-3 font-semibold text-white/80 transition-colors hover:text-white ${FOCUS_RING}`}
               >
                 <FaFileAlt aria-hidden />
                 Download CV
