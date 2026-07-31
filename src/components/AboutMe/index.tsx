@@ -23,7 +23,7 @@ const AboutMe = () => {
         variants={showAnimation}
         className="flex flex-col gap-6 md:w-1/2 px-2 md:px-0"
       >
-        <p className="font-medium text-base leading-relaxed text-center md:text-left opacity-80">
+        <p className="font-medium text-base leading-relaxed text-center md:text-left text-slate-700 dark:text-slate-300">
           I am a dedicated frontend developer and Systems Engineer from the
           Universidad De Cartagena, passionate about creating stunning and
           highly functional websites and web applications. Utilizing advanced
@@ -41,7 +41,7 @@ const AboutMe = () => {
                 <span className="text-blue-500 font-extrabold text-2xl md:text-3xl leading-none">
                   {stat.value}
                 </span>
-                <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-60 font-bold">
+                <span className="text-[10px] md:text-xs uppercase tracking-widest font-bold text-slate-600 dark:text-slate-400">
                   {stat.label}
                 </span>
               </div>

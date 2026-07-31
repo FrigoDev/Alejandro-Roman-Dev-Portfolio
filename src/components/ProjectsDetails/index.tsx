@@ -101,7 +101,7 @@ const ProjectDetails = ({ data }: DetailedProjectsProps) => {
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-white text-black hover:text-white hover:bg-black hover:drop-shadow-xl shadow-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+                className="bg-white text-slate-900 border border-white/20 hover:bg-blue-500 hover:text-white hover:border-blue-400 font-bold py-2 px-4 rounded-2xl shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
               >
                 View Project
               </a>

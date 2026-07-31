@@ -43,7 +43,7 @@ const MiniCards = ({
           imgClassName="!object-contain"
         />
       </div>
-      <span className="text-white/90 text-xs font-semibold text-center leading-tight">
+      <span className="text-white text-xs font-semibold text-center leading-tight">
         {name}
       </span>
     </motion.div>

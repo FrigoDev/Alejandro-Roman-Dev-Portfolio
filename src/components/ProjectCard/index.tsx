@@ -88,7 +88,7 @@ const ProjectCard = ({ project, isExpanded, onToggle }: ProjectCardProps) => {
                   {description}
                 </p>
               ) : (
-                <p className="text-sm italic text-slate-500">
+                <p className="text-sm italic text-slate-400">
                   No description available.
                 </p>
               )}

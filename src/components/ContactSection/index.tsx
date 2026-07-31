@@ -141,7 +141,7 @@ const ContactSection = () => {
           <span className="h-3 w-3 rounded-full bg-red-500/80" aria-hidden />
           <span className="h-3 w-3 rounded-full bg-yellow-500/80" aria-hidden />
           <span className="h-3 w-3 rounded-full bg-emerald-500/80" aria-hidden />
-          <span className="ml-3 font-mono text-xs font-medium text-slate-400">
+          <span className="ml-3 font-mono text-xs font-medium text-slate-300">
             frigodev@portfolio: ~/contact
           </span>
         </div>
@@ -150,7 +150,7 @@ const ContactSection = () => {
           <p>
             <span className="text-emerald-400">$</span> <span className="text-slate-100">whoami</span>
           </p>
-          <p className="text-slate-400">
+          <p className="text-slate-300">
             alejandro-roman · full-stack developer · open to new opportunities
           </p>
 
@@ -166,8 +166,8 @@ const ContactSection = () => {
                   {...(line.external ? { target: "_blank", rel: "noreferrer" } : {})}
                   className="group flex items-baseline gap-3 rounded px-1 text-slate-300 transition-colors hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
                 >
-                  <span className="text-slate-600 group-hover:text-blue-400/60">→</span>
-                  <span className="w-20 shrink-0 text-slate-500 group-hover:text-blue-400/80">
+                  <span className="text-slate-500 group-hover:text-blue-400/60">→</span>
+                  <span className="w-20 shrink-0 text-slate-400 group-hover:text-blue-400/80">
                     {line.label}
                   </span>
                   <span className="truncate">{line.value}</span>
@@ -186,7 +186,7 @@ const ContactSection = () => {
             >
               contact --quick
             </button>
-            <span className="inline-flex items-center gap-1.5 text-slate-500">
+            <span className="inline-flex items-center gap-1.5 text-slate-400">
               # or press <Kbd>{modKey}</Kbd>
               <Kbd>K</Kbd>
             </span>

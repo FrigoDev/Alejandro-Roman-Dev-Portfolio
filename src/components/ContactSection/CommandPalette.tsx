@@ -143,12 +143,12 @@ const CommandPalette = ({ open, onClose, commands, modKey }: CommandPaletteProps
             >
               <li
                 role="presentation"
-                className="px-3 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-slate-500"
+                className="px-3 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-slate-400"
               >
                 Contact
               </li>
               {filtered.length === 0 && (
-                <li className="px-3 py-6 text-center text-sm text-slate-500">
+                <li className="px-3 py-6 text-center text-sm text-slate-400">
                   No matching commands
                 </li>
               )}
@@ -176,7 +176,7 @@ const CommandPalette = ({ open, onClose, commands, modKey }: CommandPaletteProps
                         <span className="block font-medium">
                           {wasExecuted ? "Copied to clipboard!" : command.label}
                         </span>
-                        <span className="block text-xs text-slate-500">{command.detail}</span>
+                        <span className="block text-xs text-slate-400">{command.detail}</span>
                       </span>
                       {wasExecuted ? (
                         <FiCheck className="shrink-0 text-emerald-400" aria-hidden />
@@ -189,7 +189,7 @@ const CommandPalette = ({ open, onClose, commands, modKey }: CommandPaletteProps
               })}
             </ul>
 
-            <div className="flex items-center gap-4 border-t border-slate-700/70 px-4 py-2.5 text-[11px] text-slate-500">
+            <div className="flex items-center gap-4 border-t border-slate-700/70 px-4 py-2.5 text-[11px] text-slate-400">
               <span className="flex items-center gap-1.5">
                 <Kbd>↑↓</Kbd> navigate
               </span>
