@@ -25,6 +25,7 @@ export interface PurpleNode {
   contentful_id: string;
   description: Description;
   image: Image;
+  videoFile: VideoFile | null;
 }
 
 export interface Description {
@@ -47,6 +48,15 @@ export interface FluffyNode {
 
 export interface Image {
   gatsbyImageData: IGatsbyImageData;
+}
+
+export interface VideoFile {
+  url: string;
+  file: {
+    url: string;
+    contentType: string;
+    fileName: string;
+  };
 }
 
 export interface Fallback {

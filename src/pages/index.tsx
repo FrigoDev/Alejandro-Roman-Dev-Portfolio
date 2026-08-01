@@ -59,6 +59,14 @@ export const query = graphql`
           image {
             gatsbyImageData(placeholder: BLURRED)
           }
+          videoFile {
+            url
+            file {
+              url
+              contentType
+              fileName
+            }
+          }
           description {
             description
           }

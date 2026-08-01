@@ -12,6 +12,19 @@ module.exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
+// Explicit schema customization: the `videoFile` field on Projects is
+// optional and no entry has a value yet, so gatsby-source-contentful's
+// schema inference skips it. We declare it here so the GraphQL query in
+// src/pages/index.tsx and the createPages query below can resolve it.
+module.exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  createTypes(`
+    type ContentfulProjects implements Node {
+      videoFile: ContentfulAsset @link(by: "id", from: "videoFile___NODE")
+    }
+  `);
+};
+
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const projectTemplate = path.resolve(
@@ -29,6 +42,14 @@ module.exports.createPages = async ({ graphql, actions }) => {
             contentful_id
             description {
               description
+            }
+            videoFile {
+              url
+              file {
+                url
+                contentType
+                fileName
+              }
             }
           }
         }

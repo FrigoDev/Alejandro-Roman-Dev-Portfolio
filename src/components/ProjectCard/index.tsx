@@ -5,6 +5,7 @@ import { HiExternalLink } from "react-icons/hi";
 import { IoChevronDown } from "react-icons/io5";
 
 import { PurpleNode } from "../../types/home";
+import ProjectVideo from "../ProjectVideo";
 
 interface ProjectCardProps {
   project: PurpleNode;
@@ -14,7 +15,7 @@ interface ProjectCardProps {
 
 function TagBadge({ tag }: { tag: string }) {
   return (
-    <span className="shrink-0 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs font-medium text-white/90 backdrop-blur-sm">
+    <span className="shrink-0 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs font-medium text-white backdrop-blur-sm">
       {tag}
     </span>
   );
@@ -22,6 +23,8 @@ function TagBadge({ tag }: { tag: string }) {
 
 const ProjectCard = ({ project, isExpanded, onToggle }: ProjectCardProps) => {
   const description = project.description?.description ?? "";
+  const posterUrl = project.image?.gatsbyImageData.images.fallback?.src;
+  const showVideo = isExpanded && Boolean(project.videoFile);
 
   return (
     <motion.article
@@ -33,43 +36,59 @@ const ProjectCard = ({ project, isExpanded, onToggle }: ProjectCardProps) => {
         isExpanded ? "ring-2 ring-indigo-500/50" : ""
       }`}
     >
-      <button
-        type="button"
-        onClick={onToggle}
-        className="relative w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-        aria-expanded={isExpanded}
-        aria-controls={`project-details-${project.id}`}
-      >
-        <div className="relative w-full overflow-hidden">
-          {project.image ? (
-            <GatsbyImage
-              image={project.image.gatsbyImageData}
-              alt={project.name}
-              className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+      <div className="relative w-full overflow-hidden">
+        {showVideo && project.videoFile ? (
+          <div className="p-2">
+            <ProjectVideo
+              src={project.videoFile.file.url}
+              poster={posterUrl}
+              name={project.name}
             />
-          ) : (
-            <div className="h-48 w-full bg-slate-800" />
-          )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-          <div className="absolute inset-x-0 bottom-0 p-4">
-            <h3 className="text-lg font-bold uppercase tracking-wide text-white drop-shadow-md">
-              {project.name}
-            </h3>
-            <div className="themed-scrollbar mt-2 flex gap-1.5 overflow-x-auto pb-1">
-              {project.tags.map((tag) => (
-                <TagBadge key={tag} tag={tag} />
-              ))}
-            </div>
           </div>
-          <motion.span
-            animate={{ rotate: isExpanded ? 180 : 0 }}
-            transition={{ duration: 0.25 }}
-            className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm"
+        ) : (
+          <button
+            type="button"
+            onClick={onToggle}
+            className="relative block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            aria-expanded={isExpanded}
+            aria-controls={`project-details-${project.id}`}
           >
-            <IoChevronDown className="text-lg" />
-          </motion.span>
-        </div>
-      </button>
+            {project.image ? (
+              <GatsbyImage
+                image={project.image.gatsbyImageData}
+                alt={project.name}
+                className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <div className="h-48 w-full bg-slate-800" />
+            )}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="absolute inset-x-0 bottom-0 p-4">
+              <h3 className="text-lg font-bold uppercase tracking-wide text-white drop-shadow-md">
+                {project.name}
+              </h3>
+              <div className="themed-scrollbar mt-2 flex gap-1.5 overflow-x-auto pb-1">
+                {project.tags.map((tag) => (
+                  <TagBadge key={tag} tag={tag} />
+                ))}
+              </div>
+            </div>
+          </button>
+        )}
+
+        <motion.button
+          type="button"
+          onClick={onToggle}
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.25 }}
+          className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+          aria-label={isExpanded ? "Collapse project details" : "Expand project details"}
+          aria-expanded={isExpanded}
+          aria-controls={`project-details-${project.id}`}
+        >
+          <IoChevronDown className="text-lg" />
+        </motion.button>
+      </div>
 
       <AnimatePresence initial={false}>
         {isExpanded && (
@@ -83,6 +102,12 @@ const ProjectCard = ({ project, isExpanded, onToggle }: ProjectCardProps) => {
             className="overflow-hidden"
           >
             <div className="space-y-4 border-t border-slate-700/60 px-4 py-4">
+              {showVideo && (
+                <h3 className="text-lg font-bold uppercase tracking-wide text-white">
+                  {project.name}
+                </h3>
+              )}
+
               {description ? (
                 <p className="text-sm leading-relaxed text-slate-300">
                   {description}

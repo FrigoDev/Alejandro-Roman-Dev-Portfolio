@@ -7,6 +7,7 @@ import { BiArrowBack } from "react-icons/bi";
 import "./ProjectsDetails.css";
 import { DetailedProjectsProps } from "../../types/detailedProjects";
 import Footer from "../Footer";
+import ProjectVideo from "../ProjectVideo";
 import SEO from "../SEO";
 
 export const query = graphql`
@@ -18,6 +19,14 @@ export const query = graphql`
           name
           image {
             gatsbyImageData(placeholder: BLURRED)
+          }
+          videoFile {
+            url
+            file {
+              url
+              contentType
+              fileName
+            }
           }
           tags
           description {
@@ -83,6 +92,17 @@ const ProjectDetails = ({ data }: DetailedProjectsProps) => {
               {project.description.description}
             </p>
           </div>
+          {project.videoFile && (
+            <div className="mb-8 flex justify-center">
+              <div className="w-full sm:w-4/6">
+                <ProjectVideo
+                  src={project.videoFile.file.url}
+                  poster={project.image?.gatsbyImageData.images.fallback?.src}
+                  name={project.name}
+                />
+              </div>
+            </div>
+          )}
           <div className="flex justify-center">
             <GatsbyImage
               className="w-6/6 sm:w-4/6"

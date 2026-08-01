@@ -22,6 +22,16 @@ export interface Node {
   image: Image;
   tags: string[];
   description: Description;
+  videoFile: VideoFile | null;
+}
+
+export interface VideoFile {
+  url: string;
+  file: {
+    url: string;
+    contentType: string;
+    fileName: string;
+  };
 }
 
 export interface Description {
